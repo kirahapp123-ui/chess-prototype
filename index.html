@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09090f">
+  <title>KIRA CHESS AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Kira Chess AI home">
+        <span class="brand-icon">♛</span><span><strong>KIRA CHESS</strong><small>ARTIFICIAL INTELLIGENCE</small></span>
+      </a>
+      <div class="topbar-right"><span class="status-dot"></span><span>LOCAL PROFILE ENABLED</span></div>
+    </header>
+
+    <main class="layout">
+      <section class="game-panel panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">YOUR NEXT CHALLENGE</p><h1>Play against AI</h1></div>
+          <span class="pill">BETA</span>
+        </div>
+        <div class="opponent-row">
+          <div class="avatar">♟</div>
+          <div class="opponent-copy"><strong>KIRA Chess Bot</strong><span id="opponentLabel">Hard difficulty</span></div>
+          <div class="turn-badge" id="turnBadge">YOUR TURN</div>
+        </div>
+
+        <div class="clock-row">
+          <div class="clock-card" id="botClockCard"><span>BOT</span><strong id="botClock">05:00</strong></div>
+          <div class="clock-mode"><span class="clock-live-dot"></span><span id="clockModeLabel">BLITZ · 5 MIN</span></div>
+          <div class="clock-card active" id="playerClockCard"><span>YOU</span><strong id="playerClock">05:00</strong></div>
+        </div>
+
+        <div class="board-wrap">
+          <div class="board-coordinates ranks" aria-hidden="true"><span>8</span><span>7</span><span>6</span><span>5</span><span>4</span><span>3</span><span>2</span><span>1</span></div>
+          <div id="board" class="board" role="grid" aria-label="Chessboard"></div>
+          <div class="board-coordinates files" aria-hidden="true"><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span></div>
+        </div>
+
+        <div class="status-row"><span class="status-indicator"></span><span id="gameStatus" aria-live="polite">Your move — choose a piece.</span></div>
+        <div class="controls">
+          <button class="btn btn-primary" id="newGameBtn">＋ New game</button>
+          <button class="btn btn-secondary" id="undoBtn">↶ Undo</button>
+          <button class="btn btn-secondary" id="flipBtn">⇅ Flip board</button>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <section class="panel settings-panel">
+          <p class="eyebrow">CONFIGURATION</p><h2>Game settings</h2>
+          <label for="difficulty">Bot difficulty</label>
+          <select id="difficulty"><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard" selected>Hard</option><option value="insane">Insane</option></select>
+          <label for="clockMode">Time control</label>
+          <select id="clockMode"><option value="bullet">Bullet · 1 minute</option><option value="blitz" selected>Blitz · 5 minutes</option><option value="rapid">Rapid · 10 minutes</option></select>
+          <label for="sideChoice">Play as</label>
+          <select id="sideChoice"><option value="white" selected>White — move first</option><option value="black">Black — bot starts</option></select>
+          <label class="toggle-row" for="soundToggle"><span>Sound effects</span><input type="checkbox" id="soundToggle" checked><span class="toggle-ui"></span></label>
+          <p class="note">This version uses a lightweight built-in bot, not the official Stockfish engine. Game stats and rating are saved in this browser on this device.</p>
+        </section>
+
+        <section class="panel profile-panel">
+          <div class="history-title"><div><p class="eyebrow">PLAYER PROFILE</p><h2 id="profileName">KIRA Player</h2></div><span class="avatar small-avatar">♛</span></div>
+          <div class="rating-line"><span>Estimated rating</span><strong id="rating">800</strong></div>
+          <div class="rating-track"><span id="ratingBar"></span></div>
+          <div class="stats-grid">
+            <div><span>Wins</span><strong id="wins">0</strong></div><div><span>Losses</span><strong id="losses">0</strong></div>
+            <div><span>Draws</span><strong id="draws">0</strong></div><div><span>Win rate</span><strong id="winRate">0%</strong></div>
+          </div>
+          <div class="achievement-area"><p class="eyebrow">ACHIEVEMENTS</p><div id="achievements" class="achievements"></div></div>
+          <button class="btn btn-secondary full-btn" id="resetProfileBtn">Reset local profile</button>
+        </section>
+
+        <section class="panel history-panel">
+          <div class="history-title"><div><p class="eyebrow">MATCH LOG</p><h2>Move history</h2></div><span class="move-count" id="moveCount">0 plies</span></div>
+          <div class="move-list" id="moveList"><p class="empty-state">Your moves will appear here.</p></div>
+        </section>
+
+        <section class="panel analysis-panel">
+          <div class="history-title"><div><p class="eyebrow">POST-GAME REVIEW</p><h2>Game analysis</h2></div><span class="pill">BETA</span></div>
+          <p class="analysis-intro">Review material changes and the moves that may have given away an advantage.</p>
+          <button class="btn btn-primary full-btn" id="analyzeBtn">Analyze finished game</button>
+          <div id="analysisResults" class="analysis-results"><p class="empty-state">Finish a game, then run analysis.</p></div>
+        </section>
+      </aside>
+    </main>
+    <footer><span>♛ KIRA CHESS AI</span><span>Responsive · Local profile · No account required</span></footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
